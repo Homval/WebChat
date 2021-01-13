@@ -14,7 +14,11 @@ public class ChatService {
 
     public void sendMessage(String message) {
         for (ChatWebSocket socket: webSockets) {
-            socket.sendString(message);
+            try {
+                socket.sendString(message);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
